@@ -1,2 +1,1 @@
-
-// val = null ?? 30
+.filter((num)=>num >=20)
