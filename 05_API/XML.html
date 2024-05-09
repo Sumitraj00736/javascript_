@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML</title>
+    <style>
+        .card {
+          width: 500px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          margin: 20px;
+        }
+        .card h2 {
+          margin-top: 0;
+        }
+        .card p {
+          margin-bottom: 0;
+        }
+        .main{
+            display: flex;
+        }
+      </style>
+</head>
+
+<body style="background-color: #212121; color: white;" >
+     
+<div class="card">
+    <h2>Sumit profile</h2>
+    <img id="avatar" src="img" alt="">
+    <div class="main">
+        <h3>follower : <p id="follower"></p></h3>
+
+    </div>
+
+  </div>
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/sumitraj00736'
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET',requestUrl)
+    xhr.onreadystatechange= function(){
+        console.log(xhr.readyState)
+        if(xhr.readyState===4){
+            const data= JSON.parse(this.responseText)
+           document.querySelector('#avatar').src = data.avatar_url
+           document.querySelector('#follower').innerHTML = data.followers
+           document.querySelector('#following').innerHTML = data.following
+
+        }
+    }
+    console.log(xhr.readyState)
+    xhr.send()
+</script>
+</html>
